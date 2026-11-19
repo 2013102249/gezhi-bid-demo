@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#1A4D3A">
+  <title>格智·电网投标助手</title>
+  <meta name="description" content="面向格蒂电力售前与投标团队的 AI 投标助手：招标文件智能解析、投标决策评估、标书智能生成、合规检查、知识库与进度管控。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231A4D3A'/%3E%3Ctext x='32' y='44' font-size='34' font-weight='bold' fill='%23C49A58' text-anchor='middle' font-family='sans-serif'%3E格%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <div id="topbar"></div>
+    <main class="main" id="main"></main>
+    <div id="shell"></div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/pages.js"></script>
+  <script src="js/pages2.js"></script>
+  <script>
+    /* 启动 */
+    window.addEventListener('hashchange', router);
+    if (!location.hash) location.hash = '#/';
+    router();
+
+    /* 下拉刷新式体验：双击顶部标题回顶 */
+    let lastTap = 0;
+    document.addEventListener('touchend', e => {
+      if (e.target && e.target.classList && e.target.classList.contains('page-title')) {
+        const now = Date.now();
+        if (now - lastTap < 300) window.scrollTo({ top: 0, behavior: 'smooth' });
+        lastTap = now;
+      }
+    });
+  </script>
+</body>
+</html>
